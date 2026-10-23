@@ -1,0 +1,151 @@
+/* Freshy — Identidade Visual e Estilos Customizados */
+
+:root {
+    --freshy-primary: #2d6a4f;
+    --freshy-primary-hover: #1b4332;
+    --freshy-secondary: #52b788;
+    --freshy-light: #d8f3dc;
+    --freshy-bg: #f8faf9;
+    --freshy-surface: #ffffff;
+    --freshy-text: #1f2937;
+    --freshy-muted: #6b7280;
+    --freshy-border: #e5e7eb;
+
+    --status-vencido: #dc2626;
+    --status-vencido-bg: #fee2e2;
+    --status-critico: #ea580c;
+    --status-critico-bg: #ffedd5;
+    --status-atencao: #d97706;
+    --status-atencao-bg: #fef3c7;
+    --status-normal: #16a34a;
+    --status-normal-bg: #dcfce7;
+}
+
+body {
+    background-color: var(--freshy-bg);
+    color: var(--freshy-text);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+/* Navbar */
+.navbar-freshy {
+    background: linear-gradient(135deg, #1b4332 0%, #2d6a4f 100%);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.navbar-freshy .navbar-brand {
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.navbar-freshy .nav-link {
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+    transition: color 0.15s ease-in-out;
+}
+
+.navbar-freshy .nav-link:hover,
+.navbar-freshy .nav-link.active {
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+/* Cards & Containers */
+.freshy-card {
+    background: var(--freshy-surface);
+    border: 1px solid var(--freshy-border);
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.freshy-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+/* Badges de Status de Estoque e Validade */
+.badge-status {
+    padding: 0.35em 0.65em;
+    font-weight: 600;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.badge-status-vencido {
+    background-color: var(--status-vencido-bg);
+    color: var(--status-vencido);
+    border: 1px solid #fca5a5;
+}
+
+.badge-status-critico {
+    background-color: var(--status-critico-bg);
+    color: var(--status-critico);
+    border: 1px solid #fdba74;
+}
+
+.badge-status-atencao {
+    background-color: var(--status-atencao-bg);
+    color: var(--status-atencao);
+    border: 1px solid #fde047;
+}
+
+.badge-status-normal {
+    background-color: var(--status-normal-bg);
+    color: var(--status-normal);
+    border: 1px solid #86efac;
+}
+
+.badge-status-baixo {
+    background-color: #fef3c7;
+    color: #b45309;
+    border: 1px solid #fcd34d;
+}
+
+/* Botões Customizados */
+.btn-freshy {
+    background-color: var(--freshy-primary);
+    border-color: var(--freshy-primary);
+    color: #ffffff;
+    font-weight: 500;
+}
+
+.btn-freshy:hover, .btn-freshy:focus {
+    background-color: var(--freshy-primary-hover);
+    border-color: var(--freshy-primary-hover);
+    color: #ffffff;
+}
+
+.btn-freshy-outline {
+    background-color: transparent;
+    border-color: var(--freshy-primary);
+    color: var(--freshy-primary);
+    font-weight: 500;
+}
+
+.btn-freshy-outline:hover {
+    background-color: var(--freshy-primary);
+    color: #ffffff;
+}
+
+/* Rodapé */
+.footer-freshy {
+    background: #ffffff;
+    border-top: 1px solid var(--freshy-border);
+    padding: 1.5rem 0;
+    color: var(--freshy-muted);
+    font-size: 0.875rem;
+}

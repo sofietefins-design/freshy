@@ -1,0 +1,23 @@
+# Variáveis de ambiente e credenciais (NUNCA versionar)
+.env
+.env.local
+.env.production
+
+# Dependências
+/vendor/
+
+# Arquivos temporários e logs
+*.log
+/temp/
+/cache/
+
+# Configurações de IDEs e Editores
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Arquivos do Sistema Operacional
+.DS_Store
+Thumbs.db
+Desktop.ini
