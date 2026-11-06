@@ -5,6 +5,17 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
 e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
+## [0.4.0] - 2026-11-06
+### Added
+- Model `app/models/Categoria.php` com métodos de listagem, inserção, edição, exclusão e verificação de produtos vinculados.
+- Model `app/models/Local.php` para locais de armazenamento com integridade referencial.
+- Interface completa `public/categorias.php` com abas para categorias e locais, modais de edição, contadores de produtos e formulários protegidos.
+
+### Security
+- Validação estrita de autorização por `usuario_id` em todas as operações com categorias e locais.
+- Proteção contra exclusão de categorias e locais em uso por produtos ativos no estoque.
+- Validação de tokens CSRF em todas as mutações POST.
+
 ## [0.3.0] - 2026-11-06
 ### Added
 - Model `app/models/Usuario.php` com métodos de autenticação, busca por e-mail, verificação de unicidade e criação de usuário com transação.
