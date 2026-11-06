@@ -5,6 +5,22 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
 e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
+## [1.0.0] - 2026-11-06
+### Added
+- **MyStock (`public/estoque.php`, `app/models/Produto.php`):** CRUD completo de produtos, pesquisa textual, filtros por categoria, local e situação, com badges de status automáticos.
+- **Regras de Negócio Centralizadas:** Cálculo automático de estoque baixo (`quantidade <= quantidade_minima`) e classificação de validade: vencido (< hoje), crítico (0 a 3 dias), atenção (4 a 7 dias) e normal (> 7 dias).
+- **Consumo e Desperdício (`public/consumo.php`, `public/desperdicio.php`, `app/models/Movimentacao.php`):** Baixas atômicas de estoque protegidas por transações PDO (`FOR UPDATE`, `beginTransaction`), bloqueio estrito de estoque negativo e registro de motivo no histórico.
+- **Lista de Compras Inteligente (`public/compras.php`, `app/models/ListaCompras.php`):** Gestão de compras, itens manuais e vinculados, marcação de comprados e botão para importar produtos com estoque baixo com 1 clique.
+- **Dashboard em Tempo Real (`public/dashboard.php`):** Indicadores reais do MySQL (total no estoque, itens baixos, críticos, vencidos, pendências de compras e últimas movimentações).
+- **Histórico de Auditoria (`public/historico.php`):** Relatório de todas as operações (entradas, consumos e desperdícios) com filtros por tipo e produto.
+- **Suíte de Testes Automatizada (`tests/test_freshy.php`):** 24 testes de integração e segurança cobrindo todos os Requisitos Funcionais e isolamento de usuários (100% de aprovação).
+
+### Security
+- Transações atômicas de banco de dados para integridade de estoque em baixas e movimentações.
+- Bloqueio estrito no servidor contra saldo negativo.
+- Isolamento multi-tenant rigoroso por `usuario_id` em todos os Models e Controllers.
+- Prepared Statements em 100% das consultas dinâmicas.
+
 ## [0.4.0] - 2026-11-06
 ### Added
 - Model `app/models/Categoria.php` com métodos de listagem, inserção, edição, exclusão e verificação de produtos vinculados.

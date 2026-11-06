@@ -100,20 +100,23 @@ freshy/
    DB_PASS=sua_senha
    ```
 
-3. **Criar o Banco de Dados:**
-   No seu cliente MySQL ou phpMyAdmin, crie a base de dados:
+3. **Criar o Banco de Dados e Executar Migrações:**
+   Você pode rodar a migração automatizada via CLI:
+   ```bash
+   php database/migrate.php
+   ```
+   Ou executar manualmente no MySQL / phpMyAdmin:
    ```sql
    CREATE DATABASE freshy_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
    ```
-   Execute os scripts de banco:
    ```bash
    mysql -u root -p freshy_db < database/schema.sql
    mysql -u root -p freshy_db < database/seed.sql
    ```
 
 4. **Executar a Aplicação:**
-   - **Opção A (XAMPP):** Mantenha o projeto dentro de `C:\xampp\htdocs\sofial\Freshy` e acesse via navegador em:
-     `http://localhost/sofial/Freshy/public/`
+   - **Opção A (XAMPP):** Mantenha o projeto dentro de `C:\xampp\htdocs\sofial\Freshy`, inicie os serviços Apache e MySQL no XAMPP Control Panel e acesse via navegador em:
+     **`http://localhost/sofial/Freshy/public/`**
    - **Opção B (Servidor embutido do PHP):**
      ```bash
      php -S localhost:8000 -t public
@@ -122,18 +125,40 @@ freshy/
 
 ---
 
+## 🎓 Acesso para Avaliação Acadêmica (Demonstração)
+
+Para facilitar a avaliação imediata sem necessidade de cadastrar novos itens manualmente, o banco possui um usuário e produtos de exemplo previamente configurados em diferentes cenários (vencido, crítico, atenção e estoque baixo):
+
+- **URL de Login:** `http://localhost/sofial/Freshy/public/login.php`
+- **E-mail:** `demo@freshy.com.br`
+- **Senha:** `senha123`
+
+---
+
+## 🧪 Suíte de Testes de Integração & Segurança
+
+O Freshy inclui uma suíte completa de testes automatizados cobrindo os 17 Requisitos Funcionais, isolamento multi-tenant entre usuários, integridade de transações PDO e validações contra estoque negativo.
+
+Para executar os testes:
+```bash
+php tests/test_freshy.php
+```
+
+---
+
 ## 🔒 Segurança Implementada
 
 - Senhas tratadas exclusivamente com `password_hash()` (algoritmo BCRYPT) e validadas com `password_verify()`.
-- Prevenção total contra SQL Injection via **PDO Prepared Statements**.
+- Prevenção total contra SQL Injection via **PDO Prepared Statements** nativos (`ATTR_EMULATE_PREPARES => false`).
 - Prevenção contra Cross-Site Scripting (XSS) via escape consistente de saída com `htmlspecialchars()`.
-- Proteção contra Cross-Site Request Forgery (CSRF) com tokens dinâmicos por formulário/sessão.
-- Regeneração periódica de identificador de sessão (`session_regenerate_id(true)`) pós-login.
+- Proteção contra Cross-Site Request Forgery (CSRF) com tokens dinâmicos por formulário/sessão validados com `hash_equals()`.
+- Regeneração periódica de identificador de sessão (`session_regenerate_id(true)`) pós-login contra Session Fixation.
 - Validação estrita de autorização em todas as operações: usuário só manipula dados vinculados ao seu próprio `usuario_id`.
+- Operações de Consumo e Desperdício blindadas por **Transações Atômicas de Banco** (`beginTransaction`, `commit`, `rollBack`).
 
 ---
 
 ## 📄 Licença e Uso Acadêmico
 
-Projeto desenvolvido para fins acadêmicos e educacionais.
+Projeto desenvolvido para fins acadêmicos e educacionais.  
 Desenvolvido por **Sofia F.** (sofietefins-design).

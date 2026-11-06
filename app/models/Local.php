@@ -84,6 +84,7 @@ class Local {
             return false;
         }
         $stmt = db()->prepare("DELETE FROM `locais` WHERE `id` = :id AND `usuario_id` = :uid");
-        return $stmt->execute([':id' => $id, ':uid' => $usuarioId]);
+        $stmt->execute([':id' => $id, ':uid' => $usuarioId]);
+        return $stmt->rowCount() > 0;
     }
 }
