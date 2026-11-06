@@ -14,6 +14,7 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 - **Dashboard em Tempo Real (`public/dashboard.php`):** Indicadores reais do MySQL (total no estoque, itens baixos, críticos, vencidos, pendências de compras e últimas movimentações).
 - **Histórico de Auditoria (`public/historico.php`):** Relatório de todas as operações (entradas, consumos e desperdícios) com filtros por tipo e produto.
 - **Suíte de Testes Automatizada (`tests/test_freshy.php`):** 24 testes de integração e segurança cobrindo todos os Requisitos Funcionais e isolamento de usuários (100% de aprovação).
+- **Especificação Técnica v1.0 (`spec.md`):** Revisão completa com 24 critérios de aceite reescritos no formato obrigatório `Dado que..., Quando..., Então...`, seção de Histórico de Alterações da Especificação, detalhamento do DER e instruções completas de acesso e compartilhamento do repositório no GitHub.
 
 ### Security
 - Transações atômicas de banco de dados para integridade de estoque em baixas e movimentações.
