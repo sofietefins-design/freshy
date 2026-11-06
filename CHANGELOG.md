@@ -5,6 +5,17 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
 e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
+## [0.2.0] - 2026-11-06
+### Added
+- Arquivo `database/schema.sql` com as 7 tabelas relacionais do sistema e foreign keys com integridade referencial.
+- Arquivo `database/seed.sql` com usuário demonstrativo, categorias, locais e produtos de teste em diferentes situações.
+- Conexão PDO segura e singleton em `app/config/database.php` com `ATTR_EMULATE_PREPARES => false` e `ATTR_ERRMODE => ERRMODE_EXCEPTION`.
+- Script CLI de migração automatizada `database/migrate.php`.
+
+### Security
+- Conexão PDO com prepared statements nativos ativos.
+- Credenciais isoladas via variáveis de ambiente.
+
 ## [0.1.0] - 2026-10-23
 ### Added
 - Estrutura inicial do projeto com pastas `public/`, `app/` (config, controllers, models, helpers, views) e `database/`.

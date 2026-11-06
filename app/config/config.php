@@ -88,8 +88,8 @@ if (APP_DEBUG) {
 // Fuso horário padrão do Brasil
 date_default_timezone_set('America/Sao_Paulo');
 
-// Inicialização segura de sessão
-if (session_status() === PHP_SESSION_NONE) {
+// Inicialização segura de sessão (apenas em ambiente web)
+if (php_sapi_name() !== 'cli' && session_status() === PHP_SESSION_NONE) {
     // Diretivas de segurança de cookie de sessão
     $is_https = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || 
                 (isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == 443);
@@ -110,3 +110,6 @@ if (session_status() === PHP_SESSION_NONE) {
 
 // Carrega os helpers essenciais
 require_once APP_PATH . DIRECTORY_SEPARATOR . 'helpers' . DIRECTORY_SEPARATOR . 'functions.php';
+
+// Carrega a conexão com o banco de dados
+require_once APP_PATH . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'database.php';
