@@ -161,3 +161,134 @@ function format_datetime(?string $datetime): string {
     $timestamp = strtotime($datetime);
     return $timestamp ? date('d/m/Y H:i', $timestamp) : '-';
 }
+
+/**
+ * Autoloader simples e elegante para classes de Models do Freshy
+ */
+spl_autoload_register(function (string $class): void {
+    $file = APP_PATH . DIRECTORY_SEPARATOR . 'models' . DIRECTORY_SEPARATOR . $class . '.php';
+    if (file_exists($file)) {
+        require_once $file;
+    }
+});
+
+/**
+ * Regra de Negócio: Calcula se o produto está com estoque baixo
+ * quantidade <= quantidade_minima
+ */
+function is_estoque_baixo(float|int|string $quantidade, float|int|string $quantidadeMinima): bool {
+    return ((float) $quantidade) <= ((float) $quantidadeMinima);
+}
+
+/**
+ * Regra de Negócio: Calcula e retorna os dados de situação de estoque
+ */
+function calcular_status_estoque(float|int|string $quantidade, float|int|string $quantidadeMinima): array {
+    $baixo = is_estoque_baixo($quantidade, $quantidadeMinima);
+    if ($baixo) {
+        return [
+            'status'      => 'baixo',
+            'label'       => 'Estoque Baixo',
+            'badge_class' => 'badge-status-baixo',
+            'icon'        => 'bi-exclamation-triangle-fill',
+        ];
+    }
+
+    return [
+        'status'      => 'normal',
+        'label'       => 'Estoque Normal',
+        'badge_class' => 'badge-status-normal',
+        'icon'        => 'bi-check-circle-fill',
+    ];
+}
+
+/**
+ * Regra de Negócio Centralizada: Calcula a situação de validade do produto
+ * Regras:
+ * - data_validade < data atual => Vencido
+ * - 0 a 3 dias => Crítico
+ * - 4 a 7 dias => Atenção
+ * - Mais de 7 dias => Normal
+ * - Sem data => Não informado
+ */
+function calcular_status_validade(?string $dataValidade): array {
+    if (empty($dataValidade)) {
+        return [
+            'status'         => 'sem_validade',
+            'label'          => 'Sem validade',
+            'badge_class'    => 'bg-secondary-subtle text-secondary border border-secondary-subtle',
+            'icon'           => 'bi-calendar-minus',
+            'dias_restantes' => null,
+            'dias_texto'     => 'Indeterminada',
+        ];
+    }
+
+    $hoje = new DateTime('today');
+    $validade = DateTime::createFromFormat('Y-m-d', substr($dataValidade, 0, 10));
+
+    if (!$validade) {
+        try {
+            $validade = new DateTime($dataValidade);
+            $validade->setTime(0, 0, 0);
+        } catch (Exception) {
+            return [
+                'status'         => 'invalido',
+                'label'          => 'Data inválida',
+                'badge_class'    => 'bg-secondary text-white',
+                'icon'           => 'bi-exclamation-circle',
+                'dias_restantes' => null,
+                'dias_texto'     => 'Data inválida',
+            ];
+        }
+    } else {
+        $validade->setTime(0, 0, 0);
+    }
+
+    // Calcula diferença de dias inteiros
+    $interval = $hoje->diff($validade);
+    $dias = (int) $interval->format('%r%a'); // Negativo se já passou
+
+    if ($dias < 0) {
+        $diasVencido = abs($dias);
+        return [
+            'status'         => 'vencido',
+            'label'          => 'Vencido',
+            'badge_class'    => 'badge-status-vencido',
+            'icon'           => 'bi-x-octagon-fill',
+            'dias_restantes' => $dias,
+            'dias_texto'     => "Venceu há {$diasVencido} dia(s)",
+        ];
+    }
+
+    if ($dias >= 0 && $dias <= 3) {
+        $txt = $dias === 0 ? 'Vence hoje!' : "Vence em {$dias} dia(s)";
+        return [
+            'status'         => 'critico',
+            'label'          => "Crítico ({$txt})",
+            'badge_class'    => 'badge-status-critico',
+            'icon'           => 'bi-alarm-fill',
+            'dias_restantes' => $dias,
+            'dias_texto'     => $txt,
+        ];
+    }
+
+    if ($dias >= 4 && $dias <= 7) {
+        return [
+            'status'         => 'atencao',
+            'label'          => "Atenção (em {$dias} dias)",
+            'badge_class'    => 'badge-status-atencao',
+            'icon'           => 'bi-clock-history',
+            'dias_restantes' => $dias,
+            'dias_texto'     => "Vence em {$dias} dias",
+        ];
+    }
+
+    return [
+        'status'         => 'normal',
+        'label'          => 'Normal',
+        'badge_class'    => 'badge-status-normal',
+        'icon'           => 'bi-check-circle-fill',
+        'dias_restantes' => $dias,
+        'dias_texto'     => "Vence em {$dias} dias",
+    ];
+}

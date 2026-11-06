@@ -5,6 +5,20 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
 e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
+## [0.3.0] - 2026-11-06
+### Added
+- Model `app/models/Usuario.php` com métodos de autenticação, busca por e-mail, verificação de unicidade e criação de usuário com transação.
+- Telas públicas de autenticação: `public/cadastro.php`, `public/login.php` e `public/logout.php`.
+- Templates de layout reutilizáveis: `app/views/partials/header.php`, `navbar.php`, `alerts.php`, `footer.php`.
+- Centralização das regras de negócio de validade e estoque baixo em `app/helpers/functions.php`.
+- Autoloader automático para classes de Models.
+
+### Security
+- Autenticação com senhas criptografadas via `password_hash()` BCRYPT e validação com `password_verify()`.
+- Regeneração forçada de identificador de sessão (`session_regenerate_id(true)`) pós-login contra session fixation.
+- Proteção CSRF em todos os formulários com tokens temporários da sessão e validação em tempo constante (`hash_equals`).
+- Encerramento seguro de sessão com expiração de cookies no logout.
+
 ## [0.2.0] - 2026-11-06
 ### Added
 - Arquivo `database/schema.sql` com as 7 tabelas relacionais do sistema e foreign keys com integridade referencial.
