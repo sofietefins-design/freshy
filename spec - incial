@@ -1,0 +1,600 @@
+PROMPT MESTRE — FRESHY
+1. PAPEL E OBJETIVO
+Você será responsável por desenvolver, de forma incremental, o sistema web Freshy — Seu estoque doméstico, mais inteligente.
+O Freshy é um sistema web funcional de controle de estoque doméstico. O objetivo é permitir que usuários cadastrem produtos que possuem em casa, acompanhem quantidades e datas de validade, identifiquem produtos com estoque baixo ou próximos do vencimento, registrem consumo e desperdício e mantenham uma lista de compras.
+Este é um projeto acadêmico. Portanto, priorize:
+funcionamento real;
+segurança;
+código organizado;
+banco de dados real;
+histórico real de desenvolvimento;
+documentação;
+interface bonita e responsiva;
+escopo viável.
+NÃO crie apenas uma landing page ou protótipo visual.
+O sistema deve possuir backend PHP funcional, banco MySQL real e operações reais de cadastro, consulta, alteração e exclusão.
+2. IDIOMA
+Toda a comunicação comigo deve ser feita em português do Brasil.
+O conteúdo visível para o usuário do sistema também deve estar em português do Brasil.
+Comentários de código, documentação e mensagens técnicas podem seguir português sempre que isso não prejudicar convenções técnicas.
+3. REPOSITÓRIO GITHUB
+O projeto deve ser desenvolvido no seguinte repositório:
+[https://github.com/sofietefins-design/freshy.git](https://github.com/sofietefins-design/freshy.git)
+O branch principal é:
+main
+O projeto já possui um repositório GitHub criado.
+Antes de alterar qualquer coisa:
+verifique o estado atual do repositório;
+verifique se existe conteúdo na branch main;
+preserve arquivos existentes que sejam relevantes;
+não apague arquivos sem necessidade;
+não force push;
+não reescreva o histórico existente;
+utilize commits reais e descritivos.
+Se o ambiente do Antigravity já estiver autenticado no GitHub, utilize a autenticação disponível.
+NUNCA solicite ou grave senha, token ou chave privada do GitHub dentro do código do projeto.
+4. HISTÓRICO GIT
+O histórico de Git faz parte da avaliação acadêmica.
+Portanto, NÃO faça todo o projeto em um único commit.
+Desenvolva por etapas e faça commits reais ao concluir etapas significativas.
+Utilize mensagens seguindo este padrão:
+feat: para novas funcionalidades;
+fix: para correções;
+security: para melhorias de segurança;
+docs: para documentação;
+refactor: para reorganização do código;
+style: para alterações visuais;
+test: para testes.
+Exemplos:
+feat: cria estrutura inicial do projeto
+feat: implementa conexão PDO com MySQL
+feat: adiciona cadastro e login de usuários
+feat: implementa CRUD de produtos
+feat: adiciona controle de validade
+feat: implementa registro de consumo
+security: adiciona proteção CSRF aos formulários
+fix: corrige cálculo de estoque baixo
+docs: atualiza spec e README
+Não crie commits falsos apenas para aumentar a quantidade do histórico.
+Cada commit deve representar uma alteração real.
+Sempre que possível, após uma etapa funcional estar concluída:
+verificar os arquivos modificados;
+testar a funcionalidade;
+atualizar documentação;
+criar o commit;
+enviar para o GitHub.
+5. NÃO DESENVOLVER TUDO DE UMA VEZ
+O desenvolvimento deve ser incremental.
+Não tente gerar toda a aplicação em uma única etapa.
+Siga aproximadamente esta ordem:
+Fase 1 — Estrutura
+Criar:
+estrutura de pastas;
+.gitignore;
+.env.example;
+README.md;
+spec.md;
+CHANGELOG.md;
+estrutura inicial do banco;
+configuração inicial do PHP.
+Depois testar e fazer commit.
+Fase 2 — Banco e conexão
+Implementar:
+conexão PDO;
+configuração segura;
+tratamento de erros;
+arquivo SQL de criação das tabelas;
+dados iniciais necessários.
+Não colocar credenciais reais no código.
+Depois testar a conexão.
+Fase 3 — Autenticação
+Implementar:
+cadastro;
+login;
+logout;
+sessões;
+proteção das páginas privadas;
+password_hash();
+password_verify();
+regeneração de sessão após login.
+Testar todo o fluxo antes de avançar.
+Fase 4 — Categorias e locais
+Implementar:
+cadastro;
+consulta;
+edição;
+exclusão;
+validações;
+associação ao usuário autenticado.
+Fase 5 — MyStock
+Implementar o módulo principal de estoque.
+Criar:
+cadastro de produto;
+consulta;
+pesquisa;
+filtros;
+edição;
+exclusão;
+quantidade;
+unidade;
+categoria;
+local;
+quantidade mínima;
+validade.
+Esse deve ser o principal CRUD do sistema.
+Fase 6 — Regras de estoque
+Implementar:
+estoque normal;
+estoque baixo;
+produto próximo da validade;
+produto vencido;
+cálculo automático das situações.
+Não deixar esses valores fixos no HTML.
+Eles devem ser calculados a partir dos dados reais do banco.
+Fase 7 — Consumo
+Implementar:
+botão para consumir produto;
+formulário de quantidade;
+validação;
+atualização do estoque;
+registro da movimentação.
+O sistema nunca deve permitir estoque negativo.
+A atualização do estoque e o registro da movimentação devem utilizar transação de banco quando necessário para manter a consistência.
+Fase 8 — Desperdício
+Implementar:
+registro de desperdício;
+quantidade;
+motivo;
+atualização do estoque;
+registro no histórico.
+Fase 9 — Lista de compras
+Implementar:
+adicionar item;
+adicionar produto com estoque baixo;
+alterar quantidade;
+marcar como comprado;
+remover item;
+consultar lista.
+Fase 10 — Dashboard
+Criar dashboard baseado nos dados reais do banco.
+Exibir, quando aplicável:
+quantidade total de produtos;
+produtos com estoque baixo;
+produtos próximos da validade;
+produtos vencidos;
+movimentações recentes;
+resumo da lista de compras.
+Não utilizar números fictícios ou hardcoded.
+Fase 11 — Histórico
+Implementar consulta das movimentações.
+Exibir:
+produto;
+tipo;
+quantidade;
+motivo;
+data.
+Mostrar somente registros pertencentes ao usuário autenticado.
+Fase 12 — Interface
+Depois que a funcionalidade estiver estável, melhorar:
+responsividade;
+hierarquia visual;
+cards;
+tabelas;
+formulários;
+estados vazios;
+mensagens de sucesso;
+mensagens de erro;
+alertas;
+navegação;
+acessibilidade básica.
+O design deve ser moderno, limpo e agradável, mas sem comprometer a funcionalidade.
+6. IDENTIDADE VISUAL
+O Freshy deve transmitir organização, praticidade e frescor.
+Utilizar uma interface:
+moderna;
+limpa;
+amigável;
+responsiva;
+com boa hierarquia visual;
+com ícones quando fizer sentido;
+com destaque visual para alertas.
+Evitar aparência excessivamente corporativa ou complexa.
+O sistema deve parecer uma aplicação real, e não um trabalho escolar genérico.
+Utilizar componentes consistentes em todas as páginas.
+7. STACK
+Utilizar:
+PHP 8.2 ou superior;
+MySQL 8.0 ou compatível;
+HTML5;
+CSS3;
+JavaScript;
+PDO;
+Git;
+GitHub.
+Para a interface, pode utilizar Bootstrap 5 se isso facilitar o desenvolvimento.
+Para gráficos, utilizar Chart.js somente quando houver necessidade real.
+Não utilizar frameworks backend desnecessários.
+O objetivo é manter o projeto compatível com uma hospedagem tradicional que suporte PHP + MySQL.
+8. BANCO DE DADOS
+Criar as seguintes tabelas principais:
+usuarios
+Campos:
+id;
+nome;
+email;
+senha_hash;
+created_at.
+email deve ser único.
+Nunca armazenar senha em texto puro.
+categorias
+Campos:
+id;
+usuario_id;
+nome;
+created_at.
+locais
+Campos:
+id;
+usuario_id;
+nome;
+created_at.
+produtos
+Campos:
+id;
+usuario_id;
+categoria_id;
+local_id;
+nome;
+quantidade;
+unidade;
+quantidade_minima;
+data_validade;
+created_at;
+updated_at.
+movimentacoes
+Campos:
+id;
+usuario_id;
+produto_id;
+tipo;
+quantidade;
+motivo;
+created_at.
+Tipos iniciais:
+ENTRADA;
+CONSUMO;
+DESPERDICIO.
+listas_compras
+Campos:
+id;
+usuario_id;
+created_at;
+updated_at.
+itens_lista_compras
+Campos:
+id;
+lista_id;
+produto_id;
+nome_item;
+quantidade;
+comprado;
+created_at.
+Permitir item manual quando necessário.
+9. RELACIONAMENTOS
+Implementar chaves estrangeiras adequadas.
+Relação principal:
+USUARIO
+→ possui CATEGORIAS
+USUARIO
+→ possui LOCAIS
+USUARIO
+→ possui PRODUTOS
+CATEGORIA
+→ possui PRODUTOS
+LOCAL
+→ possui PRODUTOS
+PRODUTO
+→ possui MOVIMENTACOES
+USUARIO
+→ possui LISTAS_COMPRAS
+LISTA_COMPRAS
+→ possui ITENS_LISTA_COMPRAS
+Nunca permitir que um usuário acesse registros pertencentes a outro usuário.
+10. FLUXO PRINCIPAL
+O sistema deve funcionar aproximadamente assim:
+CADASTRO
+↓
+LOGIN
+↓
+DASHBOARD
+↓
+MYSTOCK
+↓
+CADASTRAR PRODUTO
+↓
+PHP VALIDA DADOS
+↓
+PDO / PREPARED STATEMENT
+↓
+MYSQL
+↓
+PRODUTO APARECE NO ESTOQUE
+↓
+USUÁRIO ACOMPANHA QUANTIDADE E VALIDADE
+↓
+CONSUME OU REGISTRA DESPERDÍCIO
+↓
+ESTOQUE É ATUALIZADO
+↓
+MOVIMENTAÇÃO É REGISTRADA
+↓
+PRODUTO PODE SER ADICIONADO À LISTA DE COMPRAS
+11. REGRAS DE NEGÓCIO
+Estoque baixo
+Um produto será considerado com estoque baixo quando:
+quantidade <= quantidade_minima
+Produto vencido
+Quando:
+data_validade < data atual
+o produto deve ser identificado como vencido.
+Produto próximo da validade
+Utilizar uma regra consistente baseada na diferença entre a data atual e a data de validade.
+Preferencialmente:
+0 a 3 dias: crítico;
+4 a 7 dias: atenção;
+mais de 7 dias: normal.
+Essa regra deve ficar centralizada para evitar valores diferentes em diferentes páginas.
+Consumo
+O consumo deve:
+validar a quantidade;
+verificar estoque disponível;
+diminuir a quantidade;
+registrar a movimentação.
+Nunca permitir resultado negativo.
+Desperdício
+O desperdício deve:
+validar a quantidade;
+verificar estoque disponível;
+diminuir a quantidade;
+registrar motivo;
+registrar movimentação.
+12. SEGURANÇA
+Segurança é requisito obrigatório.
+Implementar:
+PDO;
+prepared statements;
+validação no servidor;
+escape de saída com htmlspecialchars();
+proteção contra XSS;
+proteção CSRF;
+sessões seguras;
+password_hash();
+password_verify();
+regeneração de sessão após login;
+controle de autorização;
+validação de propriedade dos registros;
+mensagens de erro sem informações sensíveis;
+confirmação para exclusões;
+tratamento adequado de exceções;
+transações quando uma operação alterar múltiplos dados relacionados.
+Nunca colocar no GitHub:
+senha do banco;
+token;
+API key;
+senha de usuário;
+credenciais;
+secrets.
+Utilizar .env ou mecanismo equivalente.
+Criar .env.example com nomes das variáveis, mas sem valores reais.
+13. ESTRUTURA DO PROJETO
+Manter uma estrutura organizada semelhante a:
+freshy/
+├── public/
+│ ├── index.php
+│ ├── login.php
+│ ├── cadastro.php
+│ ├── dashboard.php
+│ ├── estoque.php
+│ ├── compras.php
+│ ├── historico.php
+│ ├── produto/
+│ │ ├── novo.php
+│ │ ├── editar.php
+│ │ └── excluir.php
+│ └── assets/
+│ ├── css/
+│ ├── js/
+│ └── img/
+│
+├── app/
+│ ├── config/
+│ ├── controllers/
+│ ├── models/
+│ ├── helpers/
+│ └── views/
+│
+├── database/
+│ ├── schema.sql
+│ └── seed.sql
+│
+├── .env.example
+├── .gitignore
+├── README.md
+├── spec.md
+└── CHANGELOG.md
+A estrutura pode ser adaptada se houver uma razão técnica clara.
+Não crie dezenas de arquivos desnecessariamente.
+14. DOCUMENTAÇÃO
+O projeto deve possuir:
+README.md
+Deve explicar:
+o que é o Freshy;
+funcionalidades;
+tecnologias;
+requisitos;
+configuração local;
+configuração do banco;
+variáveis de ambiente;
+como executar;
+estrutura básica do projeto.
+spec.md
+Deve documentar o projeto conforme ele realmente estiver sendo desenvolvido.
+A versão inicial deve conter as oito seções:
+Objetivo;
+Usuários;
+Casos de uso principais;
+Requisitos funcionais;
+Requisitos não funcionais;
+Modelo de dados;
+Critérios de aceite;
+Decisão de stack e deploy.
+À medida que o sistema mudar, atualize a spec.md.
+Não invente na documentação uma funcionalidade que não existe.
+CHANGELOG.md
+Registrar mudanças importantes.
+Exemplos:
+Added
+Funcionalidades adicionadas.
+Changed
+Alterações de comportamento ou estrutura.
+Fixed
+Correções.
+Security
+Melhorias de segurança.
+Rejected
+Ideias consideradas e retiradas do escopo.
+Exemplo:
+"Notificações por WhatsApp foram consideradas, mas rejeitadas por aumentarem a complexidade do projeto e não serem necessárias para o fluxo principal."
+O CHANGELOG deve refletir mudanças reais.
+15. ESCOPO
+Não implementar funcionalidades apenas para deixar o projeto maior.
+NÃO implementar nesta primeira versão:
+inteligência artificial;
+aplicativo mobile nativo;
+leitura de código de barras;
+integração com supermercados;
+preços em tempo real;
+WhatsApp;
+notificações push;
+integração com Alexa;
+gestão completa de pequenos comércios;
+sistema financeiro;
+recomendações complexas de receitas.
+Essas funcionalidades podem ser documentadas como futuras possibilidades, mas não fazem parte do MVP.
+16. CRITÉRIOS DE QUALIDADE
+Antes de considerar cada etapa concluída:
+testar a funcionalidade;
+verificar validações;
+verificar banco de dados;
+verificar autorização;
+verificar responsividade;
+verificar mensagens de erro;
+verificar possíveis problemas de segurança;
+atualizar documentação;
+atualizar CHANGELOG;
+criar commit real.
+Não declarar uma funcionalidade como concluída se ela apenas estiver visualmente pronta.
+17. TESTES MANUAIS OBRIGATÓRIOS
+Testar pelo menos:
+Autenticação
+cadastro válido;
+cadastro com e-mail existente;
+login válido;
+login inválido;
+logout;
+acesso sem autenticação.
+Produtos
+cadastrar produto;
+editar produto;
+excluir produto;
+pesquisar;
+filtrar;
+quantidade zero;
+quantidade negativa;
+estoque baixo;
+validade;
+produto vencido.
+Consumo
+consumo válido;
+consumo maior que estoque;
+quantidade inválida;
+atualização do estoque;
+registro no histórico.
+Desperdício
+desperdício válido;
+quantidade maior que estoque;
+registro no histórico.
+Segurança
+acesso de usuário A aos dados do usuário B;
+formulário sem CSRF;
+tentativa de inserir HTML/script;
+valores inesperados nos formulários;
+tentativa de acessar registros por ID de outro usuário.
+18. COMPORTAMENTO DO AGENTE
+Não faça suposições silenciosas.
+Quando houver uma decisão técnica que altere significativamente a arquitetura ou o escopo:
+explique em português;
+apresente a decisão;
+aguarde confirmação quando for uma decisão que possa mudar significativamente o projeto.
+Para decisões pequenas e reversíveis, escolha a alternativa mais simples e registre a decisão no CHANGELOG.
+Não adicione funcionalidades fora do escopo apenas porque parecem interessantes.
+Priorize primeiro o fluxo:
+CADASTRO → LOGIN → PRODUTO → BANCO → CONSULTA → CONSUMO → HISTÓRICO
+Esse fluxo deve estar funcionando antes de investir em detalhes visuais.
+19. DEPLOY
+O sistema precisa posteriormente ser acessível por uma URL pública, sem exigir instalação para o professor.
+A solução de deploy deve ser compatível com:
+PHP;
+MySQL;
+HTTPS;
+variáveis de ambiente ou configuração segura;
+acesso externo pelo navegador.
+Não escolher uma plataforma que execute apenas frontend estático, a menos que seja apresentada uma arquitetura compatível com PHP + MySQL.
+Antes do deploy final:
+revisar credenciais;
+garantir que .env não esteja no Git;
+configurar banco de produção;
+configurar HTTPS;
+testar login;
+testar CRUD;
+testar isolamento de usuários;
+testar consumo;
+testar lista de compras;
+testar a URL pública.
+20. RESULTADO ESPERADO
+Ao final, o repositório deve conter um sistema Freshy funcional, organizado e executável, com:
+frontend responsivo;
+backend PHP;
+banco MySQL;
+PDO;
+autenticação;
+CRUD de produtos;
+categorias;
+locais;
+controle de quantidade;
+controle de validade;
+alertas;
+consumo;
+desperdício;
+histórico;
+lista de compras;
+dashboard;
+segurança;
+documentação;
+spec.md;
+CHANGELOG.md;
+README.md;
+histórico real de commits.
+O sistema deve ser desenvolvido de maneira incremental e todas as alterações relevantes devem permanecer registradas no Git.
+PRIMEIRA AÇÃO
+Antes de implementar funcionalidades:
+inspecione o repositório atual;
+informe em português o que já existe;
+identifique se há arquivos ou commits existentes;
+apresente o plano da primeira etapa;
+NÃO apague o conteúdo existente;
+comece pela estrutura inicial e configuração do projeto;
+faça o primeiro commit real;
+prossiga por etapas.
+Não tente finalizar todo o sistema em uma única resposta ou uma única alteração.
+O objetivo é construir o Freshy de verdade, com código funcional, banco real, segurança, documentação e histórico de desenvolvimento verificável.
